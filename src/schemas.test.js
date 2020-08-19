@@ -1,4 +1,4 @@
-import NU from './never-undefined';
+import SM from './schema-matching';
 
 const exampleObject = {
   a: 'a',
@@ -27,18 +27,19 @@ const exampleObject = {
         j12: 'j12'
       }
     }
+  ],
+  k: [
+    [
+      {
+        k1: 45
+      },
+      {
+        k2: 'wo'
+      }
+    ],
+    []
   ]
 };
-
-class TestClass {
-  constructor() {
-    this.testValue = 'testValue';
-  }
-
-  getValue() {
-    return this.testValue;
-  }
-}
 
 const exampleSchema = {
   a: undefined,
@@ -49,12 +50,22 @@ const exampleSchema = {
       j11: true,
       j12: 'hi'
     }
-  }
+  },
+  k: k =>
+    k.map(arr =>
+      arr.map(
+        elem =>
+          new SM(elem, {
+            k1: 'k1',
+            k2: 'k2'
+          })
+      )
+    )
 };
 
 describe('GET WITH SCHEMA', () => {
   it('Should respect schema', () => {
-    const objWithSchema = new NU(exampleObject, exampleSchema);
-    console.log(JSON.stringify(objWithSchema.toValue(), null, 2));
+    const objWithSchema = new SM(exampleObject, exampleSchema);
+    console.log(JSON.stringify(objWithSchema, null, 2));
   });
 });

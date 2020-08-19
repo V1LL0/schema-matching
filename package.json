@@ -8,8 +8,7 @@
     "test": "jest",
     "build": "babel src -d dist"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "v1ll0",
   "license": "MIT",
   "repository": {
