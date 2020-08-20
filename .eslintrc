@@ -15,7 +15,7 @@
     "no-unused-vars": "warn",
     "no-underscore-dangle": "off",
     "no-plusplus": "off",
-    "no-param-reassign": "warn",
+    "no-param-reassign": "off",
     "no-useless-escape": "warn",
     "no-restricted-syntax": [
       "error",

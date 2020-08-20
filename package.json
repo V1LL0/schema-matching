@@ -2,7 +2,7 @@
   "name": "schema-matching",
   "version": "1.0.0",
   "description": "Schema matching object",
-  "main": "dist/index.js",
+  "main": "dist/schema-matching.js",
   "scripts": {
     "prepare": "npm run build",
     "test": "jest",
@@ -19,7 +19,9 @@
     "url": "https://github.com/V1LL0/schema-matching/issues"
   },
   "homepage": "https://github.com/V1LL0/schema-matching#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
+  },
   "devDependencies": {
     "@babel/runtime": "^7.3.1",
     "@babel/cli": "^7.2.3",

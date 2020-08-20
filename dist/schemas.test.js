@@ -11,10 +11,6 @@ var exampleObject = {
   d: null,
   e: {
     e1: 'e1',
-    e2: 3,
-    e3: function e3() {
-      return 'e3';
-    },
     e4: {
       e41: 'e41'
     }
@@ -37,6 +33,16 @@ var exampleObject = {
 var exampleSchema = {
   a: undefined,
   b: 'ciao',
+  e: {
+    e2: function e2() {
+      return 3;
+    },
+    e3: function e3() {
+      return function () {
+        return 'boh';
+      };
+    }
+  },
   z: 'what',
   j: {
     j1: {
@@ -47,7 +53,7 @@ var exampleSchema = {
   k: function k(_k) {
     return _k.map(function (arr) {
       return arr.map(function (elem) {
-        return new _schemaMatching["default"](elem, {
+        return (0, _schemaMatching["default"])(elem, {
           k1: 'k1',
           k2: 'k2'
         });
@@ -57,7 +63,7 @@ var exampleSchema = {
 };
 describe('GET WITH SCHEMA', function () {
   it('Should respect schema', function () {
-    var objWithSchema = new _schemaMatching["default"](exampleObject, exampleSchema);
-    console.log(JSON.stringify(objWithSchema, null, 2));
+    var objWithSchema = (0, _schemaMatching["default"])(exampleObject, exampleSchema);
+    console.log(objWithSchema);
   });
 });

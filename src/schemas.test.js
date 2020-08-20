@@ -1,4 +1,4 @@
-import SM from './schema-matching';
+import schemaMatching from './schema-matching';
 
 const exampleObject = {
   a: 'a',
@@ -7,10 +7,6 @@ const exampleObject = {
   d: null,
   e: {
     e1: 'e1',
-    e2: 3,
-    e3() {
-      return 'e3';
-    },
     e4: {
       e41: 'e41'
     }
@@ -44,6 +40,12 @@ const exampleObject = {
 const exampleSchema = {
   a: undefined,
   b: 'ciao',
+  e: {
+    e2: () => 3,
+    e3: () => () => {
+      return 'boh';
+    }
+  },
   z: 'what',
   j: {
     j1: {
@@ -53,19 +55,18 @@ const exampleSchema = {
   },
   k: k =>
     k.map(arr =>
-      arr.map(
-        elem =>
-          new SM(elem, {
-            k1: 'k1',
-            k2: 'k2'
-          })
+      arr.map(elem =>
+        schemaMatching(elem, {
+          k1: 'k1',
+          k2: 'k2'
+        })
       )
     )
 };
 
 describe('GET WITH SCHEMA', () => {
   it('Should respect schema', () => {
-    const objWithSchema = new SM(exampleObject, exampleSchema);
-    console.log(JSON.stringify(objWithSchema, null, 2));
+    const objWithSchema = schemaMatching(exampleObject, exampleSchema);
+    console.log(objWithSchema);
   });
 });
