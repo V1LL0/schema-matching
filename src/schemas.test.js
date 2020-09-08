@@ -67,6 +67,6 @@ const exampleSchema = {
 describe('GET WITH SCHEMA', () => {
   it('Should respect schema', () => {
     const objWithSchema = schemaMatching(exampleObject, exampleSchema);
-    console.log(objWithSchema);
+    console.log(JSON.stringify(objWithSchema, null, 2));
   });
 });

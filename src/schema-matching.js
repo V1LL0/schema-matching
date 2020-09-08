@@ -19,11 +19,9 @@ const recursiveSchemaMatching = (obj, schema, result) => {
     }
 
     if (schema[prop] instanceof Object) {
-      result[prop] = recursiveSchemaMatching(
-        obj[prop] === undefined ? {} : obj[prop],
-        schema[prop],
-        {}
-      );
+      result[prop] = Array.isArray(obj[prop])
+        ? obj[prop].map(el => recursiveSchemaMatching(el === undefined ? {} : el, schema[prop], {}))
+        : recursiveSchemaMatching(obj[prop] === undefined ? {} : obj[prop], schema[prop], {});
       continue;
     }
 

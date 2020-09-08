@@ -64,6 +64,6 @@ var exampleSchema = {
 describe('GET WITH SCHEMA', function () {
   it('Should respect schema', function () {
     var objWithSchema = (0, _schemaMatching["default"])(exampleObject, exampleSchema);
-    console.log(objWithSchema);
+    console.log(JSON.stringify(objWithSchema, null, 2));
   });
 });
